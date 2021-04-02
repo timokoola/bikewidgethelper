@@ -37,9 +37,9 @@ export async function getStaticProps(context) {
 // return <li key={index}>{stop.name}</li>;
 
 export default function Home({ stops }) {
-  console.log(stops);
   const router = useRouter();
   console.log(router.query);
+  console.log(stops);
   return (
     <>
       <Head>
@@ -53,20 +53,8 @@ export default function Home({ stops }) {
 
       <main>
         <section>
-          {stops?.data?.bikeRentalStations?.map((stop, index) => {
-            return (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  id={`stop${index}`}
-                  name={`stop${index}`}
-                />
-                <label htmlFor={`stop${index}`}>{stop.name}</label>
-              </div>
-            );
-          })}
-          <Link href="/customize">
-            <a>Customize</a>
+          <Link href="/">
+            <a>Change selection</a>
           </Link>
         </section>
       </main>
