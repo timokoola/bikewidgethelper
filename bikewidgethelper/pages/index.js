@@ -37,9 +37,16 @@ export async function getStaticProps(context) {
 // return <li key={index}>{stop.name}</li>;
 
 export default function Home({ stops }) {
+  function isChecked(code) {
+    return selected?.includes(`{code}`) ? "checked" : "";
+
+  }
+
   console.log(stops);
   const router = useRouter();
   console.log(router.query);
+  const selected = router?.query?.stops?.split(",") ?? [];
+  console.log(selected);
   return (
     <>
       <Head>
@@ -60,8 +67,11 @@ export default function Home({ stops }) {
                   type="checkbox"
                   id={`stop${index}`}
                   name={`stop${index}`}
+                  checked={isChecked(index, selected)}
                 />
-                <label htmlFor={`stop${index}`}>{stop.name}</label>
+                <label htmlFor={`stop${index}`}>
+                  {stop.name} {index}
+                </label>
               </div>
             );
           })}
